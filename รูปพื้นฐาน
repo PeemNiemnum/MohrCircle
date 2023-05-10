@@ -1,0 +1,110 @@
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+
+float pi=3.14;
+float area,Ixbar,Iybar,Ixy,Ix,Iy;
+int triangle()
+{
+	float b,h,c;
+	int i=1;
+	printf("Let's find moment of inertia of triangle.\n\nPlease put the side length of triangle\n");
+	do
+	{
+	printf("\nH =");
+	scanf("%2f",&h);
+	printf("B =");
+	scanf("%2f",&b); 
+	printf("C =");
+	scanf("%2f",&c);
+	if(c>b) printf("From picture B>=C.please put your value again");
+	else break;
+	}
+	while(i=1);
+	area=b*h/2;
+	printf("Area of this is %.2f",area);
+	Ix=b*pow(h,3)/36;
+	Iy=b*h*(pow(b,2)+(b*c)+pow(c,2));
+	Ixy=b*pow(h,2)*(b-(2*c))/72;
+	printf("Ix=%.2f m^4\nIy=%.2f m^4",Ixy,Ix,Iy);	
+}
+
+int square()
+{
+	float a,b,Imax,Imin;
+	printf("Let's find moment of inertia of square.\n\nPlease put the side length of square\n");
+	printf("\nwidth =");
+	scanf("%f",&a);
+	printf("length =");
+	scanf("%f",&b);
+	area=a*b;
+	printf("area = %.2f m^2\n",area);
+	Ix=a*pow(b,3)/12;
+	Iy=b*pow(a,3)/12;
+	Ixy=0;
+	printf("Ixy=%.2f \nImax= %.2f \nImin=%.2f",Ixy,Ix,Iy);
+}
+
+int circle()
+{
+	double r;
+	printf("Let's find moment of inertia of circle.\nPlease put the side length of circle\n");
+	printf("radius = ");
+	scanf("%lf",&r);
+	area=pi*pow(r,2);
+	printf("\nArea of this is %.2f\n",area);	
+	Ix=pi*pow(r,4)/4;
+	Ixy=0;
+	printf("\nIxy=%.2f m^4\nIx= %.2f Iy=%.2f",Ixy,Ix,Iy);
+}
+
+int semicircle()
+{
+	double r,area,Ix,Iy,Ixy;
+	printf("Let's find moment of inertia of semicircle.\nPlease put the side length of semicircle\n");
+	printf("radius = ");
+	scanf("%lf",&r);
+	area=pi*pow(r,2)/2;
+	printf("Area is %.2f",area);
+	Ix=((pi/8)-(8/(9*pi)))*pow(r,4);
+	Iy=pi*pow(r,4)/8;
+	Ixy=0;
+	printf("\nIxy=%.2f m^4\nIx=%.2f m^4\nIy=%.2f m^4",Ixy,Ix,Iy);
+	
+}
+
+int quatercircle()
+{
+	double r,area,Ix,Iy,Ixy;
+	printf("Let's find moment of inertia of quatercircle.\nPlease put the side length of quatercircle\n");
+	printf("radius = ");
+	scanf("%lf",&r);
+	area=pi*pow(r,2)/4;
+	printf("Area is %.2f",area);
+	Ix=Iy=((pi/16)-(4/(9*pi)))*pow(r,4);
+	Ixy=-0.01647*pow(r,4);
+	printf("\nIxy=%.2f m^4\nIx=%.2f m^4\nIy=%.2f m^4",Ixy,Ix,Iy);
+}
+
+
+int main()
+{
+	int i;
+	printf("Choose geometry to find a moment of inertia\n");
+	printf("1.triangle\n2.square\n3.circle\n4.semi-circle\n5.quater-circle\n");
+	while(!(i>=1&&i<=5))
+	{
+	printf("\nEnter your choice =");
+	scanf("%d",&i);
+	printf("\n");
+	switch (i)
+	{
+	case 1 : triangle();break;
+	case 2 : square();break;
+	case 3 : circle();break;
+	case 4 : semicircle();break;
+	case 5 : quatercircle();break;
+	default : printf("You can't use the program.Please enter number 1-5\n");
+	}
+	}
+}
